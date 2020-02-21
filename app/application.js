@@ -1,7 +1,7 @@
 'use strict';
 
 window.urlRoot = process.env.SITE_URL;
-if (process.env.BUILD_TYPE !== 'phonegap') {
+if (process.env.BUILD_TYPE !== 'phonegap' && process.env.BUILD_TYPE !== 'electron') {
   window.urlRoot = '/' + window.urlRoot.split('/').slice(3).join('/')
 }
 
@@ -47,7 +47,7 @@ window.initCSApp = function() {
 
   emitter.once('wallet-ready', function() {
     if (window.Zendesk) {
-      window.Zendesk.setAnonymousIdentity(process.env.BUILD_PLATFORM + ' user');
+      window.Zendesk.setAnonymousIdentity();
     }
     if (process.env.BUILD_PLATFORM === 'ios') {
       window.StatusBar.styleLightContent();

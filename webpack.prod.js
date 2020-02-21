@@ -21,7 +21,6 @@ var config = merge(common, {
         test: /\.js$/,
         include: [
           /node_modules\/bech32/,
-          /node_modules\/ripple-lib/,
           /node_modules\/agent-base/
         ],
         use: {
@@ -99,6 +98,8 @@ if (process.env.BUILD_TYPE === 'phonegap') {
   delete config.entry['loader'];
 
   config.output.publicPath = '';
+} else if (process.env.BUILD_TYPE === 'electron') {
+  config.output.publicPath = './';
 }
 
 module.exports = config;
